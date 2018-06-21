@@ -395,25 +395,26 @@ class ZabbixConn(object):
                     else:
                         self.logger.info('User not in ldap group "%s"' % eachUser)
 
-            # update users media
-            onlycreate = False
-            media_opt_filtered = []
-            for elem in self.media_opt:
-                if elem[0] == "onlycreate" and elem[1].lower() == "true":
-                    onlycreate = True
-                if elem[0] == "severity":
-                    media_opt_filtered.append(
-                        (elem[0], self.convert_severity(elem[1]))
-                    )
-                else:
-                    media_opt_filtered.append(elem)
+            if not self.skip_media:  # Modified by Swisscom (Schweiz) AG, Modifications are licensed under MIT License
+                # update users media
+                onlycreate = False
+                media_opt_filtered = []
+                for elem in self.media_opt:
+                    if elem[0] == "onlycreate" and elem[1].lower() == "true":
+                        onlycreate = True
+                    if elem[0] == "severity":
+                        media_opt_filtered.append(
+                            (elem[0], self.convert_severity(elem[1]))
+                        )
+                    else:
+                        media_opt_filtered.append(elem)
 
-            if onlycreate:
-                self.logger.info("Add media only on newly created users for group >>>%s<<<" % eachGroup)
-                zabbix_group_users = missing_users
-            else:
-                self.logger.info("Update media on all users for group >>>%s<<<" % eachGroup)
-                zabbix_group_users = self.get_group_members(zabbix_grpid)
+                if onlycreate:
+                    self.logger.info("Add media only on newly created users for group >>>%s<<<" % eachGroup)
+                    zabbix_group_users = missing_users
+                else:
+                    self.logger.info("Update media on all users for group >>>%s<<<" % eachGroup)
+                    zabbix_group_users = self.get_group_members(zabbix_grpid)
 
         if not self.skip_media:  # Modified by Swisscom (Schweiz) AG, Modifications are licensed under MIT License
             for eachUser in set(zabbix_group_users):

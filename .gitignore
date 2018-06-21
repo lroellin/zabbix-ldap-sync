@@ -3,5 +3,5 @@
 zabbix-ldap-*.conf
 lib/__pycache__/*
 *.pyc
-#  Modified by Swisscom (Schweiz) AG, Modifications are licensed under MIT License
+# Modified by Swisscom (Schweiz) AG, Modifications are licensed under MIT License
 .idea/

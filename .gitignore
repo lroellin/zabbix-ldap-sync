@@ -3,3 +3,4 @@
 zabbix-ldap-*.conf
 lib/__pycache__/*
 *.pyc
+.idea/

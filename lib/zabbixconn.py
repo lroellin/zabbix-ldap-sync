@@ -25,6 +25,8 @@ class ZabbixConn(object):
         self.nocheckcertificate = config.zbx_nocheckcertificate
         self.ldap_groups = config.ldap_groups
         self.ldap_media = config.ldap_media
+        # Modified by Swisscom (Schweiz) AG, Modifications are licensed under MIT License
+        self.skip_media = config.skip_media
         self.media_opt = config.media_opt
         self.deleteorphans = config.zbx_deleteorphans
         self.media_description = config.media_description
@@ -413,6 +415,7 @@ class ZabbixConn(object):
                 self.logger.info("Update media on all users for group >>>%s<<<" % eachGroup)
                 zabbix_group_users = self.get_group_members(zabbix_grpid)
 
+        if not self.skip_media:  # Modified by Swisscom (Schweiz) AG, Modifications are licensed under MIT License
             for eachUser in set(zabbix_group_users):
                 eachUser = eachUser.lower()
                 self.logger.info('>>> Updating/create user media for "%s", update "%s"' % (eachUser, self.media_description))

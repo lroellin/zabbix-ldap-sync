@@ -43,6 +43,9 @@ class ZabbixLDAPConf(object):
 
             self.ldap_media = self.try_get_item(parser, 'ldap', 'media', 'mail')
 
+            # Modified by Swisscom (Schweiz) AG, Modifications are licensed under MIT License
+            self.skip_media = parser.getboolean('ldap', 'skipmedia', fallback=False)
+
             self.ad_filtergroup = parser.get('ad', 'filtergroup', fallback='(&(objectClass=group)(name=%s))', raw=True)
             self.ad_filteruser = parser.get('ad', 'filteruser', fallback='(objectClass=user)(objectCategory=Person))',
                                             raw=True)

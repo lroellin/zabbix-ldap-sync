@@ -51,7 +51,7 @@ In order to use the *zabbix-ldap-sync* script we need to create a configuration 
 * `groups` - LDAP groups to sync with Zabbix (support wildcard - TESTED ONLY with Active Directory, see Command-line arguments)
 * `media` - Name of the LDAP attribute of user object, that will be used to set `Send to` property of Zabbix user media. This entry is optional, default value is `mail`.
 <!-- Modified by Swisscom (Schweiz) AG, Modifications are licensed under MIT License -->
-* `skipmedia` - Skip importing media (useful if you don't have a media, e.g. an email address, in your LDAP).
+* `skipmedia` - Skip importing media (useful if you don't have a media, e.g. an email address, in your LDAP). Can be `yes` or `no` (default value is `no`)
 
 #### [ad]
 * `filtergroup` = The ldap filter to get group in ActiveDirectory mode, by default `(&(objectClass=group)(name=%s))`
